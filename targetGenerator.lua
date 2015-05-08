@@ -39,6 +39,8 @@ function(e)
 
 --todo: remove test
 
+
+
     Runtime:dispatchEvent({name="pointChange", points=math.floor(#targetGenerator.created)})
 
     e.target:setFillColor(1,1,0)
