@@ -17,14 +17,14 @@
 --- EVENT: timesUp
 
 local targetGenerator = require("targetGenerator")
-local p=require("properties")
+local p = require("properties")
 
 local targetChainGenerator = {}
 
 
 targetChainGenerator.create = function()
 
-    local listenerTrap=function() return true end
+    local listenerTrap = function() return true end
     local targetsChain = display.newGroup()
     targetsChain.orderChain = function(arrayOftypes)
 
@@ -37,7 +37,7 @@ targetChainGenerator.create = function()
 
         local params =
         {
-            text = 0,
+            text = "",
             x = 0,
             y = 0,
             font = native.systemFontBold,
@@ -49,33 +49,40 @@ targetChainGenerator.create = function()
         targetsChain.text.value = 0;
         targetsChain.rect = display.newRoundedRect(0, 0, width, height, 5);
 
-        targetsChain:insert(targetsChain.text)
+
         targetsChain:insert(targetsChain.rect)
+        targetsChain:insert(targetsChain.text)
 
         targetsChain.rect:setFillColor(1, 0.9, 0, 0.8)
         --targetsChain.rect.strokeWidth=10
         --targetsChain.rect:setStrokeColor(0.6,0.9,0,1)
 
-        local w=20
 
-        local newX=(#targetsChain.internalChain+1)*(w*1.25)/2
+        if (targetsChain.internalChain) then
+            local w = 20
+            local newX = (#targetsChain.internalChain + 1) * (w * 1.25) / 2
 
 
-        for i = 1, #targetsChain.internalChain do
-            local rect=targetGenerator.create(targetsChain.internalChain[i], 20, 20)
-            rect.y=i*w*1.25-newX
+            for i = 1, #targetsChain.internalChain do
+                local rect = targetGenerator.create(targetsChain.internalChain[i], 20, 20)
+                rect.y = i * w * 1.25 - newX
 
-            targetsChain:insert(rect)
-
+                targetsChain:insert(rect)
+            end
         end
-
-        targetsChain:addEventListener("touch",listenerTrap)
-
+        targetsChain:addEventListener("touch", listenerTrap)
     end
+    targetsChain.setText=function(string)
+    targetsChain.setTextColor=function(array)
 
+    targetsChain.text:setFillColor(unpack(array,1,3))
+    targetsChain.text.alpha=1
+    end
+    targetsChain.text.text=string
+    end
     targetsChain.remove = function()
 
-        targetsChain:removeEventListener("touch",listenerTrap)
+        targetsChain:removeEventListener("touch", listenerTrap)
         targetsChain:removeSelf();
     end
 

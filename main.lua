@@ -11,29 +11,13 @@ require("config")
 local gameGenerator=require("gameGenerator")
 local targetCreator=require("targetGenerator")
 local p=require("properties")
-local panelClass=require("panelClass")
-local pointsCreator=require("pointsCreator")
-local timerGenerator=require("timerGenerator")
 
 
 
 
-------------------------------------Draw bottom panel
-local object=panelClass.create();
-object.draw({bottom={size=6}})
-object.setBottomColor({0.1,0.2,0.3})
------------------------------------Show current points
 
-local pointsIndicator=pointsCreator.create()
-pointsIndicator.draw();
 
-----------------------------------Show timer
-local timerBox=timerGenerator.create()
-timerBox.draw()
-timerBox.start(5)
---------------------element/position/alpha
-object.bottomInsert(pointsIndicator,1,0.5)
-object.bottomInsert(timerBox,-1,0.5)
+
 
 ------------------------------------Create field
 local gameField_Size={};
@@ -83,7 +67,7 @@ end
 
 
 local gameController=gameGenerator.create()
-gameController.start()
+gameController.start(5)
 
 
 
