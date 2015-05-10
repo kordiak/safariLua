@@ -24,6 +24,7 @@ clicked=
 function(e)
 
 
+    if(e.phase=="ended")then
     for i=1,#targetGenerator.created do
 
         if targetGenerator.created[i].object==e.target then
@@ -44,6 +45,7 @@ function(e)
     e.target:setFillColor(1,1,0)
     e.target:removeEventListener("touch",clicked)
     e.target:removeSelf()
+    end
 end
 
 
