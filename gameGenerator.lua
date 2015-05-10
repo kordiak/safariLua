@@ -65,7 +65,7 @@ gameGenerator.create = function()
     local startGame = function(elementsNum, n)
 
         gameController.chain = {}
-        n = n or 2
+        n = n or p.typesNum
         createChain(elementsNum, n)
 
 

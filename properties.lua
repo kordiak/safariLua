@@ -14,6 +14,13 @@ local originY=display.screenOriginY;
 properties.bottomSide=display.actualContentHeight;
 properties.rightSide=display.actualContentWidth;
 
+properties.types=
+{
+    red={1,0,0},
+    blue={0,0,1}
+}
+properties.typesNum=2
+
 
 properties.X=function(value)
 

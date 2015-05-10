@@ -7,13 +7,9 @@
 
 ---EVENT: targetHit
 ---event.type
-
+local p=require("properties")
 local targetGenerator={}
-local types=
-{
-    red={1,0,0},
-    blue={0,0,1}
-}
+local types=p.types
 
 targetGenerator.created={}
 
