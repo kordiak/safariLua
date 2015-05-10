@@ -61,7 +61,7 @@ panelsGroup.create=function()
 
             end
 
-                local fixedXPostion=p.rightSide/(3)*position
+                local fixedXPostion=p.rightSide/(4)*position
                 element.xScale=scale
                 element.yScale=scale
                 object.bottom:insert(element)

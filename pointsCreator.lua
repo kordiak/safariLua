@@ -7,6 +7,12 @@
 
 
 
+
+---LISTENER : pointChange
+----------------event.points
+
+
+
 local pointsCreator ={}
 
 pointsCreator.x=0;
@@ -19,20 +25,21 @@ pointsCreator.create=function()
 
 
     local pointsIndicator=display.newGroup()
-    pointsIndicator.points=0;
+
+    pointsIndicator.textValue=0;
 
 
     local pointListener=function(event)
 
-        if(event.points>pointsIndicator.points) then
+        if(event.points+pointsIndicator.textValue>pointsIndicator.textValue) then
 
 
             local changeSize
             changeSize=function()
 
                 if pointsIndicator.value.params==nil then
-                    pointsIndicator.points=event.points
-                    pointsIndicator.value.text=pointsIndicator.points
+                    pointsIndicator.textValue=event.points+pointsIndicator.textValue
+                    pointsIndicator.value.text=pointsIndicator.textValue
 
                 pointsIndicator.value.params=
                 {
@@ -66,8 +73,8 @@ pointsCreator.create=function()
             changeSizeDown=function()
 
                 if pointsIndicator.value.params==nil then
-                    pointsIndicator.points=event.points
-                    pointsIndicator.value.text=pointsIndicator.points
+                    pointsIndicator.textValue=event.points+pointsIndicator.textValue
+                    pointsIndicator.value.text=pointsIndicator.textValue
 
                     pointsIndicator.value.params=
                     {
@@ -108,15 +115,16 @@ pointsCreator.create=function()
         pointsIndicator.rect=display.newRoundedRect(0,0,200,100,5);
         pointsIndicator.rect.strokeWidth=10
 
-        pointsIndicator.rect:setFillColor(0,1,0,0.05)
-        pointsIndicator.rect:setStrokeColor(0.9,0.4,0,1)
+        pointsIndicator.rect:setFillColor(1,1,0,0.3)
+        pointsIndicator.rect:setStrokeColor(1,1,1,0.2)
+        --pointsIndicator.rect:setStrokeColor(0.9,0.4,0,1)
 
         pointsIndicator:insert(pointsIndicator.rect)
 
 
         local params=
         {
-            text=pointsIndicator.points,
+            text=pointsIndicator.textValue,
             x=0,
             y=0,
             font = native.systemFontBold,

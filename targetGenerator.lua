@@ -5,6 +5,8 @@
 -- Time: 14:08
 -- To change this template use File | Settings | File Templates.
 
+---EVENT: targetHit
+---event.type
 
 local targetGenerator={}
 local types=
@@ -15,7 +17,7 @@ local types=
 
 targetGenerator.created={}
 
-local eb=function(event)print("event") end
+
 
 local colors={}
 colors[1]="red"
@@ -30,8 +32,8 @@ function(e)
 
         if targetGenerator.created[i].object==e.target then
 
-            print(colors[targetGenerator.created[i].type]);
-            Runtime:dispatchEvent({name="targetClicked",target=targetGenerator})
+
+            Runtime:dispatchEvent({name="targetHit",type=targetGenerator.created[i].type})
             table.remove(targetGenerator.created,i)
             break
         end
@@ -41,7 +43,7 @@ function(e)
 
 
 
-    Runtime:dispatchEvent({name="pointChange", points=math.floor(#targetGenerator.created)})
+    --Runtime:dispatchEvent({name="pointChange", points=math.floor(#targetGenerator.created)})
 
     e.target:setFillColor(1,1,0)
     e.target:removeEventListener("touch",clicked)

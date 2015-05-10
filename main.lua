@@ -8,11 +8,13 @@
 
 
 require("config")
-
+local gameGenerator=require("gameGenerator")
 local targetCreator=require("targetGenerator")
 local p=require("properties")
 local panelClass=require("panelClass")
 local pointsCreator=require("pointsCreator")
+local timerGenerator=require("timerGenerator")
+
 
 
 
@@ -24,8 +26,14 @@ object.setBottomColor({0.1,0.2,0.3})
 
 local pointsIndicator=pointsCreator.create()
 pointsIndicator.draw();
+
+----------------------------------Show timer
+local timerBox=timerGenerator.create()
+timerBox.draw()
+timerBox.start(5)
 --------------------element/position/alpha
 object.bottomInsert(pointsIndicator,1,0.5)
+object.bottomInsert(timerBox,-1,0.5)
 
 ------------------------------------Create field
 local gameField_Size={};
@@ -59,6 +67,9 @@ for h=0+gameField_singleSize.height/2,gameField_Size.height,gameField_singleSize
 
 end
 
+
+
+
 ------------------------------------Fullfill field
 --TODO: ENSURE that there is only one target in the field
 for b=0,10 do
@@ -71,6 +82,8 @@ end
 
 
 
+local gameController=gameGenerator.create()
+gameController.start()
 
 
 
