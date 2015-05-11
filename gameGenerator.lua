@@ -9,7 +9,7 @@ local targetChaingenerator = require("targetChainGenerator")
 local p = require("properties")
 local bg = require("buttonGenerator")
 local timerGenerator=require("timerGenerator")
-
+local gameFieldGenerator=require("gameFieldGenerator")
 local panelClass=require("panelClass")
 local pointsCreator=require("pointsCreator")
 
@@ -127,8 +127,14 @@ gameGenerator.create = function()
         n = n or p.typesNum
         createChain(elementsNum, n)
 
-
+        gameController.gameField=gameFieldGenerator.create(gameField_Size)
+        gameController.gameField.draw()
+        gameController.gameField.fullFill(gameController.chain)
         showTask()
+
+
+
+
     end
 
 
@@ -138,6 +144,7 @@ gameGenerator.create = function()
         gameController.removeListeners()
         currentPositionInChain=1
         gameController.timerBox.remove()
+        gameController.gameField.remove()
         timer.performWithDelay(200,function() gameController.start(howMany+1) end)
 
     end
