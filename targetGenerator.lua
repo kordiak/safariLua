@@ -45,7 +45,8 @@ function(e)
     e.target:setFillColor(1,1,0)
     e.target:removeEventListener("touch",clicked)
     e.target:removeSelf()
-    end
+  end
+  return true;
 end
 
 
